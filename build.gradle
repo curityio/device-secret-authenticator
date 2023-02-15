@@ -1,0 +1,36 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+}
+
+group = 'io.curity.identityserver.plugin'
+version = '1.0.0'
+description = 'Device Secret Authenticator'
+
+sourceCompatibility = 1.17
+targetCompatibility = 1.17
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+        
+dependencies {
+    compileOnly group: 'se.curity.identityserver', name: 'identityserver.sdk', version:'7.5.0'
+    compileOnly group: 'org.slf4j', name: 'slf4j-api', version:'2.0.3'
+    compileOnly group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version:'1.6.10'
+}
+
+task packageJar(type: Copy, dependsOn: jar) {
+    from configurations.runtimeClasspath
+    from jar
+    into "$project.buildDir/$project.name"
+}
+
+task deploy(type: Sync, dependsOn: packageJar) {
+    from "$project.buildDir/$project.name"
+    into "$System.env.IDSVR_HOME/usr/share/plugins/$project.name"
+}
+
