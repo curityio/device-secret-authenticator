@@ -14,8 +14,9 @@ This is just a demo of the capability and is not production ready.
 Configuration
 ~~~~~~~~~~~~~
 
-Configure the token endpoint to issue together with the issued tokens. Similar to following:
-```
+Configure the token endpoint to issue a nonce together with the issued tokens. Similar to following:
+
+```javascript
 var nonceIssuer = context.getNonceTokenIssuer('default');
 var nonceAttributes = {};
 nonceAttributes.subject = context.subjectAttributes();
