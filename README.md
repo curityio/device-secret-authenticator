@@ -23,7 +23,7 @@ nonceAttributes.expires = refreshTokenData.exp;
 
 ## Building the Plugin
 
-You can build the plugin by issue the command `./gradlew dist`. This will produce a folder in the `build` directory with the plugin JAR file and all the dependencies needed called `authenticators.device-secret`, which can be installed.
+You can build the plugin by issue the command `./gradlew packageJar`. This will produce a folder in the `build` directory with the plugin JAR file and all the dependencies needed called `authenticators.device-secret`, which can be installed.
 
 ## Installing the Plugin
 
